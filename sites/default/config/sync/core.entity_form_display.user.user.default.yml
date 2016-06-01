@@ -1,0 +1,70 @@
+uuid: a56a55a2-95bd-411f-b307-0d3610867bc0
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.user.user.field_firstname
+    - field.field.user.user.field_lastname
+    - field.field.user.user.field_mailchimp
+    - field.field.user.user.field_title
+    - field.field.user.user.user_picture
+    - image.style.thumbnail
+  module:
+    - image
+    - mailchimp_lists
+    - user
+_core:
+  default_config_hash: LLAieeozVsoZDb-2PbFxRJpQqnKmpR7-4OoRJnduz-U
+id: user.user.default
+targetEntityType: user
+bundle: user
+mode: default
+content:
+  account:
+    weight: 3
+    settings: {  }
+    third_party_settings: {  }
+  contact:
+    weight: 6
+    settings: {  }
+    third_party_settings: {  }
+  field_firstname:
+    weight: 1
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+  field_lastname:
+    weight: 2
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+  field_mailchimp:
+    weight: 8
+    settings: {  }
+    third_party_settings: {  }
+    type: mailchimp_lists_select
+  field_title:
+    weight: 0
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+  language:
+    weight: 5
+    settings: {  }
+    third_party_settings: {  }
+  timezone:
+    weight: 7
+    settings: {  }
+    third_party_settings: {  }
+  user_picture:
+    type: image_image
+    settings:
+      preview_image_style: thumbnail
+      progress_indicator: throbber
+    third_party_settings: {  }
+    weight: 4
+hidden: {  }

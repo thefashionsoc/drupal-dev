@@ -1,0 +1,25 @@
+uuid: ace1137f-ee1e-48de-9efe-6216f11cd812
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:41d88a45-59c4-4dcd-b281-b927928bc181'
+  module:
+    - block_content
+  theme:
+    - bootstrap_business
+id: aboutus
+theme: bootstrap_business
+region: footer_fourth
+weight: -12
+provider: null
+plugin: 'block_content:41d88a45-59c4-4dcd-b281-b927928bc181'
+settings:
+  id: 'block_content:41d88a45-59c4-4dcd-b281-b927928bc181'
+  label: 'About Us'
+  provider: block_content
+  label_display: visible
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }

@@ -1,0 +1,25 @@
+uuid: 98d07759-e4f7-4a79-a3c7-c326699a0ec4
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:be9d7848-7306-427a-ba4f-3900c053cfb6'
+  module:
+    - block_content
+  theme:
+    - bootstrap_business
+id: contactus
+theme: bootstrap_business
+region: footer_second
+weight: -10
+provider: null
+plugin: 'block_content:be9d7848-7306-427a-ba4f-3900c053cfb6'
+settings:
+  id: 'block_content:be9d7848-7306-427a-ba4f-3900c053cfb6'
+  label: 'Contact Us'
+  provider: block_content
+  label_display: visible
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }

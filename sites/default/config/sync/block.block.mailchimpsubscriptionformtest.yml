@@ -1,0 +1,20 @@
+uuid: f2f4be27-e4e3-4544-a348-b8fcee9b0632
+langcode: en
+status: true
+dependencies:
+  module:
+    - mailchimp_signup
+  theme:
+    - bootstrap_business
+id: mailchimpsubscriptionformtest
+theme: bootstrap_business
+region: sidebar_second
+weight: -9
+provider: null
+plugin: 'mailchimp_signup_subscribe_block:test'
+settings:
+  id: 'mailchimp_signup_subscribe_block:test'
+  label: Newsletter
+  provider: mailchimp_signup
+  label_display: visible
+visibility: {  }

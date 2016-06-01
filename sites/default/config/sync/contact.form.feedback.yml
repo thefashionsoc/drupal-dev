@@ -1,0 +1,12 @@
+uuid: 6f0480bd-86bd-46b9-a6ed-c7da5daa5b02
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: c4zaT5cyPxuTXI6JOWt3qRtMvICT9tHB6d9a5VG-CmQ
+id: feedback
+label: 'Support Form'
+recipients:
+  - thefashionsociety.hq@outlook.com
+reply: ''
+weight: 0

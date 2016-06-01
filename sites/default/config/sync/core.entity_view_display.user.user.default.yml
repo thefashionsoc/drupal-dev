@@ -1,0 +1,63 @@
+uuid: 65faca6a-fa98-422e-b82a-4b03b177d312
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.user.user.field_firstname
+    - field.field.user.user.field_lastname
+    - field.field.user.user.field_mailchimp
+    - field.field.user.user.field_title
+    - field.field.user.user.user_picture
+    - image.style.thumbnail
+  module:
+    - image
+    - mailchimp_lists
+    - options
+    - user
+_core:
+  default_config_hash: L2mtwGWH_7wDRCMIR4r_Iu_jmvQ10DV1L8ht8iNZ5qY
+id: user.user.default
+targetEntityType: user
+bundle: user
+mode: default
+content:
+  field_firstname:
+    weight: 1
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+  field_lastname:
+    weight: 2
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+  field_mailchimp:
+    weight: 4
+    label: above
+    settings:
+      show_interest_groups: false
+    third_party_settings: {  }
+    type: mailchimp_lists_subscribe_default
+  field_title:
+    weight: 0
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+  member_for:
+    weight: 5
+    settings: {  }
+    third_party_settings: {  }
+  user_picture:
+    type: image
+    weight: 3
+    settings:
+      image_style: thumbnail
+      image_link: content
+    third_party_settings: {  }
+    label: hidden
+hidden: {  }
