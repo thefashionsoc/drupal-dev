@@ -128,10 +128,6 @@ class MailchimpSignupPageForm extends FormBase {
       $mergevar = unserialize($mergevar_str);
       if (!empty($mergevar)) {
         $form['mergevars'][$tag] = mailchimp_insert_drupal_form_tag($mergevar);
-        echo "<pre>";
-          var_dump($tag);    
-          var_dump($form['mergevars'][$tag]); 
-        echo "</pre>"; 
 
         if (empty($lists)) {
           $form['mergevars'][$tag]['#disabled'] = TRUE;
