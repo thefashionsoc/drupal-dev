@@ -1,0 +1,15 @@
+<div class="date">
+	{{content.field_date}}
+</div>
+<br/>
+<div class="location_name">
+	{{content.field_location_name}}
+</div>
+<br/>
+<div class="location_address">
+	{{content.field_location_address}}
+</div>
+<br/>
+<div class="url">
+	{{content.field_url}}
+</div>
