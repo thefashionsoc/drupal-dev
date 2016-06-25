@@ -1,0 +1,9 @@
+uuid: af081f6b-4185-400b-bc18-9a297499a34a
+langcode: en
+status: true
+dependencies: {  }
+name: 'Category 2'
+vid: category_2
+description: ''
+hierarchy: 0
+weight: 0

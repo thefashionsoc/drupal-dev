@@ -1,21 +1,19 @@
-uuid: db765112-17e8-4780-9d90-7554c2cf8db6
+uuid: 1e116b48-f26b-4f05-b09d-bfdd58cabe49
 langcode: en
 status: true
 dependencies:
   module:
     - node
     - taxonomy
-_core:
-  default_config_hash: WpOE_bs8Bs_HY2ns7n2r__de-xno0-Bxkqep5-MsHAs
-id: node.field_tags
-field_name: field_tags
+id: node.field_category_1
+field_name: field_category_1
 entity_type: node
 type: entity_reference
 settings:
   target_type: taxonomy_term
 module: core
 locked: false
-cardinality: -1
+cardinality: 1
 translatable: true
 indexes: {  }
 persist_with_no_fields: false

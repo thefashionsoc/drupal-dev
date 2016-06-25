@@ -1,0 +1,28 @@
+uuid: b8685d05-219c-4c6d-893c-491d0ed6fccf
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_category_1
+    - node.type.article
+    - taxonomy.vocabulary.category_1
+id: node.article.field_category_1
+field_name: field_category_1
+entity_type: node
+bundle: article
+label: Segment
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      category_1: category_1
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference
