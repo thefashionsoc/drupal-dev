@@ -1,0 +1,9 @@
+uuid: ce808ce4-c6fa-46b3-a26c-a11c5bfcc483
+langcode: en
+status: true
+dependencies: {  }
+id: node_type_article
+action: page_redirect
+allow_override: 0
+redirect: /subscribe
+redirect_code: 307

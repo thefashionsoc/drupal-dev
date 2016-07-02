@@ -17,5 +17,5 @@ permissions:
   6: 'access shortcuts'
   7: 'search content'
   8: 'use text format mailchimp_campaign'
-  9: 'access content'
   10: 'edit own comments'
+  11: 'access content'
