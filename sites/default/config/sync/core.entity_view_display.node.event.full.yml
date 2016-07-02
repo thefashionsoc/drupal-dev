@@ -1,0 +1,60 @@
+uuid: 6a456120-e9cb-4745-b0be-aa4598d9d73a
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.full
+    - field.field.node.event.body
+    - field.field.node.event.field_date
+    - field.field.node.event.field_location_address
+    - field.field.node.event.field_location_name
+    - field.field.node.event.field_url
+    - node.type.event
+  module:
+    - ds
+    - text
+    - user
+third_party_settings:
+  ds:
+    layout:
+      id: ds_1col
+      path: modules/contrib/ds
+      library: ''
+      disable_css: false
+      entity_classes: all_classes
+      settings:
+        wrappers:
+          ds_content: div
+        outer_wrapper: div
+        attributes: ''
+        link_attribute: ''
+        link_custom: ''
+        classes:
+          layout_class: {  }
+    regions:
+      ds_content:
+        - body
+        - addtoany_field
+    fields:
+      addtoany_field:
+        plugin_id: addtoany_field
+        weight: 1
+        label: hidden
+        formatter: default
+id: node.event.full
+targetEntityType: node
+bundle: event
+mode: full
+content:
+  body:
+    label: hidden
+    type: text_default
+    weight: 0
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  field_date: true
+  field_location_address: true
+  field_location_name: true
+  field_url: true
+  links: true
