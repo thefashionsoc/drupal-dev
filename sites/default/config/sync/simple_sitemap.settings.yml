@@ -3,7 +3,16 @@ custom:
     path: /
     priority: !!float 1
 entity_types:
-  node: {  }
+  node:
+    article:
+      index: 1
+      priority: 0.5
+    page:
+      index: 1
+      priority: 0.5
+    event:
+      index: 1
+      priority: 0.5
   taxonomy_term: {  }
   menu_link_content: {  }
 settings:
