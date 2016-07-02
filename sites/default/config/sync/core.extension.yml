@@ -42,7 +42,9 @@ module:
   paragraphs: 0
   path: 0
   quickedit: 0
+  rabbit_hole: 0
   rdf: 0
+  rh_node: 0
   search: 0
   shortcut: 0
   simple_sitemap: 0
