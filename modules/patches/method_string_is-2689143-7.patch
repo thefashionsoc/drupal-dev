@@ -1,0 +1,13 @@
+diff --git a/modules/mailchimp_lists/src/Controller/MailchimpListsController.php b/modules/mailchimp_lists/src/Controller/MailchimpListsController.php
+index f93c442..ea7ef7a 100644
+--- a/modules/mailchimp_lists/src/Controller/MailchimpListsController.php
++++ b/modules/mailchimp_lists/src/Controller/MailchimpListsController.php
+@@ -12,8 +12,6 @@ use Drupal\Core\Routing\RouteMatchInterface;
+ use Drupal\Core\Link;
+ use Drupal\Core\Url;
+ 
+-use Drupal\Component\Utility\String;
+-
+ /**
+  * MailChimp Lists controller.
+  */
