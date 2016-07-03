@@ -1,0 +1,7 @@
+name: TFS Mailchimp
+type: module
+description: Customizations for Mailchimp
+core: 8.x
+package: TFS
+dependencies:
+  - mailchimp_signup
