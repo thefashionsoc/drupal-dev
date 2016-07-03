@@ -4,10 +4,22 @@
  * @file
  * Contains tfs_mailchimp.module..
  */
+use Drupal\user\Entity\User;
 
 /**
  * Implements hook_form_FORM_ID_alter().
  */
 function tfs_mailchimp_form_mailchimp_signup_subscribe_block_tfs_signup_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+  // Move title field to the top
   $form['mergevars']['TITLE']['#weight'] = 0;
+
+  // Prefill the form with some default values
+  $user = Drupal::currentUser();
+  if ($user->isAuthenticated()) {
+    $user = User::load($user->id());
+    $form['mergevars']['TITLE']['#default_value'] = $user->get('field_title')->value;
+    $form['mergevars']['EMAIL']['#default_value'] = $user->getEmail();
+    $form['mergevars']['FNAME']['#default_value'] = $user->get('field_firstname')->value;
+    $form['mergevars']['LNAME']['#default_value'] = $user->get('field_lastname')->value;
+  }
 }
