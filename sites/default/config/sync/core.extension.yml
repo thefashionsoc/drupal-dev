@@ -28,6 +28,7 @@ module:
   help: 0
   history: 0
   image: 0
+  kint: 0
   layout_plugin: 0
   link: 0
   mailchimp: 0
@@ -54,6 +55,7 @@ module:
   system: 0
   taxonomy: 0
   text: 0
+  tfs_mailchimp: 0
   token: 0
   toolbar: 0
   tour: 0

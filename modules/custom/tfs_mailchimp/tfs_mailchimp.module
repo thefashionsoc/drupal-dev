@@ -5,4 +5,9 @@
  * Contains tfs_mailchimp.module..
  */
 
-
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function tfs_mailchimp_form_mailchimp_signup_subscribe_block_tfs_signup_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+  $form['mergevars']['TITLE']['#weight'] = 0;
+}
