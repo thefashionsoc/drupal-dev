@@ -39,7 +39,13 @@ third_party_settings:
         - field_image
         - body
         - node_link
+        - addtoany_field
     fields:
+      addtoany_field:
+        plugin_id: addtoany_field
+        weight: 4
+        label: hidden
+        formatter: default
       node_link:
         plugin_id: node_link
         weight: 3
