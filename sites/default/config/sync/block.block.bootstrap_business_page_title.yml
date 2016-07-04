@@ -1,6 +1,6 @@
 uuid: 48cc9477-3542-442c-bc4a-ec8341b702fc
 langcode: en
-status: true
+status: false
 dependencies:
   theme:
     - bootstrap_business
@@ -8,7 +8,7 @@ _core:
   default_config_hash: 7rR9chwXvdM2H8OYMAYx9Zj3GGlPMrZp_M3ZA4thYTk
 id: bootstrap_business_page_title
 theme: bootstrap_business
-region: content
+region: '-1'
 weight: -7
 provider: null
 plugin: page_title_block
