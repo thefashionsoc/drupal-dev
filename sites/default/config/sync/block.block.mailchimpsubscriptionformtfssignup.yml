@@ -1,0 +1,20 @@
+uuid: fcae9b53-d76c-40e6-a5d2-a57dcb5a1dd0
+langcode: en
+status: true
+dependencies:
+  module:
+    - mailchimp_signup
+  theme:
+    - bootstrap_business
+id: mailchimpsubscriptionformtfssignup
+theme: bootstrap_business
+region: sidebar_second
+weight: -13
+provider: null
+plugin: 'mailchimp_signup_subscribe_block:tfs_signup'
+settings:
+  id: 'mailchimp_signup_subscribe_block:tfs_signup'
+  label: 'Mailchimp Subscription Form: TFS Signup'
+  provider: mailchimp_signup
+  label_display: '0'
+visibility: {  }
