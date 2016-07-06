@@ -19,3 +19,4 @@ permissions:
   8: 'use text format mailchimp_campaign'
   10: 'edit own comments'
   11: 'access content'
+  12: 'rabbit hole bypass node'

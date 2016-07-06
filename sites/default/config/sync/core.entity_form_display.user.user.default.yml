@@ -7,11 +7,13 @@ dependencies:
     - field.field.user.user.field_lastname
     - field.field.user.user.field_mailchimp
     - field.field.user.user.field_title
+    - field.field.user.user.field_user_subscribed
     - field.field.user.user.user_picture
     - image.style.thumbnail
   module:
     - image
     - mailchimp_lists
+    - path
     - user
 _core:
   default_config_hash: LLAieeozVsoZDb-2PbFxRJpQqnKmpR7-4OoRJnduz-U
@@ -58,7 +60,7 @@ content:
     third_party_settings: {  }
   path:
     type: path
-    weight: 30
+    weight: 9
     settings: {  }
     third_party_settings: {  }
   timezone:
@@ -72,4 +74,5 @@ content:
       progress_indicator: throbber
     third_party_settings: {  }
     weight: 4
-hidden: {  }
+hidden:
+  field_user_subscribed: true

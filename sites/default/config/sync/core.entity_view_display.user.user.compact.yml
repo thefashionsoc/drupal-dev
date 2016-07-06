@@ -8,6 +8,7 @@ dependencies:
     - field.field.user.user.field_lastname
     - field.field.user.user.field_mailchimp
     - field.field.user.user.field_title
+    - field.field.user.user.field_user_subscribed
     - field.field.user.user.user_picture
     - image.style.thumbnail
   module:
@@ -33,4 +34,5 @@ hidden:
   field_lastname: true
   field_mailchimp: true
   field_title: true
+  field_user_subscribed: true
   member_for: true
