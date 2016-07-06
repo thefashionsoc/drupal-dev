@@ -4,7 +4,10 @@
  * @file
  * Contains tfs_mailchimp.module..
  */
+use Drupal\Component\Transliteration\TransliterationInterface;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Language\LanguageInterface;
+use Drupal\tfs_mailchimp\Helper\MailchimpHelper;
 use Drupal\user\Entity\User;
 
 /**
@@ -31,6 +34,16 @@ function tfs_mailchimp_form_mailchimp_signup_subscribe_block_tfs_signup_form_alt
     else {
       $form['#access'] = FALSE;
     }
+    $form['create_account'] = [
+      '#type' => 'checkbox',
+      '#title' => t('Create account')
+    ];
+  }
+  else {
+    $form['create_account'] = [
+      '#type' => 'checkbox',
+      '#title' => t('Create account')
+    ];
   }
 
   $form['#submit'][] = 'tfs_mailchimp_signup_submit';
@@ -49,5 +62,32 @@ function tfs_mailchimp_signup_submit($form, FormStateInterface $form_state) {
     $user
       ->set('field_user_subscribed', 1)
       ->save();
+  }
+  elseif ($form_state->getValue('create_account')) {
+    $merge_vars = $form_state->getValue('mergevars');
+    $email = $merge_vars['EMAIL'];
+
+    $user = \Drupal\user\Entity\User::create();
+    $user->setPassword('the-fashion-society');
+    $user->enforceIsNew();
+    $user->setEmail($email);
+
+    $user_name = preg_replace('/([^@]*).*/', '$1', $email);
+    $user->setUsername($user_name);
+
+    $user->set('init', $merge_vars['EMAIL']);
+    $user->set('field_title', $merge_vars['TITLE']);
+    $user->set('field_firstname', $merge_vars['FNAME']);
+    $user->set('field_lastname', $merge_vars['LNAME']);
+    $user->set('field_user_subscribed', 1);
+    $user->activate();
+
+    // Save user account
+    $user->save();
+
+    // No email verification required; log in user immediately.
+    _user_mail_notify('register_no_approval_required', $user);
+    user_login_finalize($user);
+    drupal_set_message(t('Registration successful. You are now logged in.'));
   }
 }
