@@ -1,1 +1,19 @@
 /* Custom CSS overrides */
+
+ul#follow_us {
+    list-style-type: none;
+    float: right;
+    transform:translateY(10px);
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+ul#follow_us li{
+    display: inline-block;
+    transform:translateY(-12px);
+}
+
+ul#follow_us li img{
+    transform:translateY(10px);
+}
