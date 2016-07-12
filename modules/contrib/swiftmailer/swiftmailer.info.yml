@@ -4,8 +4,8 @@ description: Installs Swift Mailer as a mail system.
 # core: 8.x
 package: Mail
 
-# Information added by Drupal.org packaging script on 2015-11-30
-version: '8.x-1.0-alpha1'
+# Information added by Drupal.org packaging script on 2016-05-17
+version: '8.x-1.0-alpha1+6-dev'
 core: '8.x'
 project: 'swiftmailer'
-datestamp: 1448876350
+datestamp: 1463485706

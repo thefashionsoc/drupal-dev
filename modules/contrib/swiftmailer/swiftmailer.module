@@ -68,6 +68,17 @@ function swiftmailer_theme($existing, $type, $theme, $path) {
 }
 
 /**
+ * Implements hook_theme_suggestions_HOOK() for swiftmailer.
+ */
+function swiftmailer_theme_suggestions_swiftmailer(array $variables) {
+  $suggestions = [];
+  $suggestions[] = 'swiftmailer';
+  $suggestions[] = 'swiftmailer__' . $variables['message']['module'];
+  $suggestions[] = 'swiftmailer__' . $variables['message']['module'] . '__' . $variables['message']['key'];
+  return $suggestions;
+}
+
+/**
  * Prepares variables for swiftmailer templates.
  *
  * Default template: swiftmailer.html.twig.

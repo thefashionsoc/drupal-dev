@@ -4399,6 +4399,7 @@
             "html2text/html2text": "~4.0.1",
             "swiftmailer/swiftmailer": "~5.4.0"
         },
+        "time": "2016-05-17 11:37:52",
         "type": "drupal-module",
         "extra": {
             "branch-alias": {

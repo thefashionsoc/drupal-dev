@@ -22,6 +22,7 @@ use Drupal\swiftmailer\Utility\Conversion;
 use Exception;
 use Html2Text\Html2Text;
 use Psr\Log\LoggerInterface;
+use stdClass;
 use Swift_Attachment;
 use Swift_FileSpool;
 use Swift_Image;
@@ -74,8 +75,8 @@ class SwiftMailer implements MailInterface, ContainerFactoryPluginInterface {
    * @param \Drupal\Core\Extension\ModuleHandlerInterface $module_handler
    */
   function __construct(ImmutableConfig $transport, ImmutableConfig $message, LoggerInterface $logger, RendererInterface $renderer, ModuleHandlerInterface $module_handler) {
-    $this->config['transport'] = $transport->getRawData();
-    $this->config['message'] = $message->getRawData();
+    $this->config['transport'] = $transport->get();
+    $this->config['message'] = $message->get();
     $this->logger = $logger;
     $this->renderer = $renderer;
     $this->moduleHandler = $module_handler;
@@ -145,10 +146,10 @@ class SwiftMailer implements MailInterface, ContainerFactoryPluginInterface {
         $image_path = Unicode::substr($image_path, 1);
       }
 
-      $image = new stdClass();
+      $image = new \stdClass();
       $image->uri = $image_path;
       $image->filename = $image_name;
-      $image->filemime = file_get_mimetype($image_path);
+      $image->filemime = \Drupal::service('file.mime_type.guesser')->guess($image_path);
       $image->cid = rand(0, 9999999999);
       $message['params']['images'][] = $image;
       $message['body'] = preg_replace($image_id, 'cid:' . $image->cid, $message['body']);
@@ -176,7 +177,7 @@ class SwiftMailer implements MailInterface, ContainerFactoryPluginInterface {
       $m = Swift_Message::newInstance();
 
       // Not all Drupal headers should be added to the e-mail message.
-      // Some headers must be supressed in order for Swift Mailer to
+      // Some headers must be suppressed in order for Swift Mailer to
       // do its work properly.
       $suppressable_headers = swiftmailer_get_supressable_headers();
 
@@ -192,7 +193,7 @@ class SwiftMailer implements MailInterface, ContainerFactoryPluginInterface {
         foreach ($message['headers'] as $header_key => $header_value) {
 
           // Check wether the current header key is empty or represents
-          // a header that should be supressed. If yes, then skip header.
+          // a header that should be suppressed. If yes, then skip header.
           if (empty($header_key) || in_array($header_key, $suppressable_headers)) {
             continue;
           }
@@ -389,7 +390,7 @@ class SwiftMailer implements MailInterface, ContainerFactoryPluginInterface {
     // Iterate through each array element.
     foreach ($files as $file) {
 
-      if ($file instanceof \stdClass) {
+      if ($file instanceof stdClass) {
 
         // Validate required fields.
         if (empty($file->uri) || empty($file->filename) || empty($file->filemime)) {
@@ -465,7 +466,7 @@ class SwiftMailer implements MailInterface, ContainerFactoryPluginInterface {
     // Iterate through each array element.
     foreach ($images as $image) {
 
-      if ($image instanceof \stdClass) {
+      if ($image instanceof stdClass) {
 
         // Validate required fields.
         if (empty($image->uri) || empty($image->filename) || empty($image->filemime) || empty($image->cid)) {
