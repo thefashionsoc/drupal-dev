@@ -4290,5 +4290,148 @@
             "testing",
             "xunit"
         ]
+    },
+    {
+        "name": "html2text/html2text",
+        "version": "4.0.1",
+        "version_normalized": "4.0.1.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/mtibben/html2text.git",
+            "reference": "f55104b7c9f99b0937f0e20fe051b19f9c0ecad1"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/mtibben/html2text/zipball/f55104b7c9f99b0937f0e20fe051b19f9c0ecad1",
+            "reference": "f55104b7c9f99b0937f0e20fe051b19f9c0ecad1",
+            "shasum": ""
+        },
+        "require-dev": {
+            "phpunit/phpunit": "~4"
+        },
+        "suggest": {
+            "ext-mbstring": "For best performance",
+            "symfony/polyfill-mbstring": "If you can't install ext-mbstring"
+        },
+        "time": "2016-03-16 23:24:34",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Html2Text\\": [
+                    "src/",
+                    "test/"
+                ]
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "GPLv2"
+        ],
+        "description": "Converts HTML to formatted plain text"
+    },
+    {
+        "name": "swiftmailer/swiftmailer",
+        "version": "v5.4.3",
+        "version_normalized": "5.4.3.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/swiftmailer/swiftmailer.git",
+            "reference": "4cc92842069c2bbc1f28daaaf1d2576ec4dfe153"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/swiftmailer/swiftmailer/zipball/4cc92842069c2bbc1f28daaaf1d2576ec4dfe153",
+            "reference": "4cc92842069c2bbc1f28daaaf1d2576ec4dfe153",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.3"
+        },
+        "require-dev": {
+            "mockery/mockery": "~0.9.1"
+        },
+        "time": "2016-07-08 11:51:25",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "5.4-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "files": [
+                "lib/swift_required.php"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Chris Corbyn"
+            },
+            {
+                "name": "Fabien Potencier",
+                "email": "fabien@symfony.com"
+            }
+        ],
+        "description": "Swiftmailer, free feature-rich PHP mailer",
+        "homepage": "http://swiftmailer.org",
+        "keywords": [
+            "email",
+            "mail",
+            "mailer"
+        ]
+    },
+    {
+        "name": "drupal/swiftmailer",
+        "version": "dev-1.x",
+        "version_normalized": "dev-1.x",
+        "source": {
+            "type": "git",
+            "url": "https://git.drupal.org/project/swiftmailer",
+            "reference": "d4e036782026a760a1fef83940a83c3bc630ce14"
+        },
+        "require": {
+            "drupal/core": "~8.0",
+            "html2text/html2text": "~4.0.1",
+            "swiftmailer/swiftmailer": "~5.4.0"
+        },
+        "type": "drupal-module",
+        "extra": {
+            "branch-alias": {
+                "dev-1.x": "1.x-dev"
+            },
+            "drupal": {
+                "version": "8.x-1.0-alpha1+6-dev",
+                "datestamp": "1463485540"
+            }
+        },
+        "installation-source": "source",
+        "notification-url": "https://packages.drupal.org/8/downloads",
+        "license": [
+            "GPL-2.0+"
+        ],
+        "authors": [
+            {
+                "name": "B-Prod",
+                "homepage": "https://www.drupal.org/user/407852"
+            },
+            {
+                "name": "sbrattla",
+                "homepage": "https://www.drupal.org/user/53422"
+            },
+            {
+                "name": "webflo",
+                "homepage": "https://www.drupal.org/user/254778"
+            }
+        ],
+        "description": "Swiftmailer",
+        "homepage": "https://www.drupal.org/project/swiftmailer",
+        "support": {
+            "source": "http://cgit.drupalcode.org/swiftmailer"
+        }
     }
 ]

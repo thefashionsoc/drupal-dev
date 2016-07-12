@@ -1,0 +1,6 @@
+theme: bootstrap_business
+defaults:
+  sender: maillog
+  formatter: swiftmailer
+_core:
+  default_config_hash: IhwTepsVwtbtbcT5GzQKhCXDCRvbk3MNkWqPiuiZ10s
