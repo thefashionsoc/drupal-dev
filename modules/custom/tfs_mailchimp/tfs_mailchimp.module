@@ -4,9 +4,8 @@
  * @file
  * Contains tfs_mailchimp.module..
  */
-use Drupal\Component\Transliteration\TransliterationInterface;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\Core\Language\LanguageInterface;
+use Drupal\Core\Render\Markup;
 use Drupal\tfs_mailchimp\Helper\MailchimpHelper;
 use Drupal\user\Entity\User;
 
@@ -24,7 +23,7 @@ function tfs_mailchimp_form_mailchimp_signup_subscribe_block_tfs_signup_form_alt
   $user = Drupal::currentUser();
   if ($user->isAuthenticated()) {
     $user = User::load($user->id());
-    
+
     if (!$user->get('field_user_subscribed')->value) {
       $form['mergevars']['TITLE']['#default_value'] = $user->get('field_title')->value;
       $form['mergevars']['EMAIL']['#default_value'] = $user->getEmail();
@@ -97,4 +96,7 @@ function tfs_mailchimp_signup_submit($form, FormStateInterface $form_state) {
  */
 function tfs_mailchimp_mail_alter(&$message) {
   $message['headers']['Content-Type'] = "text/html; charset=UTF-8; format=flowed; delsp=yes";
+  foreach ($message['body'] as &$body) {
+    $body = Markup::create(nl2br($body));
+  }
 }

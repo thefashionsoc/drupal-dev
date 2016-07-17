@@ -1,4 +1,4 @@
-theme: bootstrap_business
+theme: current
 defaults:
   sender: maillog
   formatter: swiftmailer
