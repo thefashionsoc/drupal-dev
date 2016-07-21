@@ -6,6 +6,7 @@ use Drupal\Core\Entity\Entity;
 use Drupal\Core\Config\ImmutableConfig;
 use Drupal\Core\Entity\EntityTypeManager;
 use Drupal\Core\Entity\EntityTypeBundleInfo;
+use Drupal\Core\Form\FormStateInterface;
 use Drupal\rabbit_hole\Plugin\RabbitHoleBehaviorPluginManager;
 use Drupal\rabbit_hole\Plugin\RabbitHoleEntityPluginManager;
 use Drupal\rabbit_hole\Entity\BehaviorSettings;
@@ -56,11 +57,12 @@ class FormManglerService {
    * @param string $entity_type
    *   The name of the entity for which this form provides global options.
    */
-  public function addRabbitHoleOptionsToGlobalForm(array &$attach, $entity_type) {
+  public function addRabbitHoleOptionsToGlobalForm(array &$attach, $entity_type, FormStateInterface $form_state, $form_id) {
     $entity_type = $this->entityTypeManager->getStorage($entity_type)
       ->getEntityType();
 
-    $this->addRabbitHoleOptionsToForm($attach, $entity_type->id());
+    $this->addRabbitHoleOptionsToForm($attach, $entity_type->id(), NULL,
+      $form_state, $form_id);
   }
 
   /**
@@ -76,9 +78,9 @@ class FormManglerService {
    *    defined even in the case of bundles since it is used to determine bundle
    *    and entity type.
    */
-  public function addRabbitHoleOptionsToEntityForm(array &$attach, Entity $entity) {
+  public function addRabbitHoleOptionsToEntityForm(array &$attach, Entity $entity, FormStateInterface $form_state, $form_id) {
     $this->addRabbitHoleOptionsToForm($attach, $entity->getEntityType()->id(),
-            $entity);
+      $entity, $form_state, $form_id);
   }
 
   /**
@@ -93,8 +95,9 @@ class FormManglerService {
    *    defined even in the case of bundles since it is used to determine bundle
    *    and entity type.
    */
-  private function addRabbitHoleOptionsToForm(array &$attach,
-    $entity_type_id, $entity = NULL) {
+  private function addRabbitHoleOptionsToForm(array &$attach, $entity_type_id,
+    $entity, FormStateInterface $form_state, $form_id) {
+
     $entity_type = $this->entityTypeManager->getStorage($entity_type_id)
       ->getEntityType();
 
@@ -135,9 +138,10 @@ class FormManglerService {
         : 'bundle_default';
     }
 
+    $is_bundle = $this->isEntityBundle($entity);
     $entity_plugin = $this->rhEntityPluginManager->createInstanceByEntityType(
-      $is_bundle_or_entity_type ? $entity_type->getBundleOf()
-            : $entity_type->id());
+      $is_bundle_or_entity_type && !empty($entity_type->getBundleOf())
+        ? $entity_type->getBundleOf() : $entity_type->id());
 
     // If the user doesn't have access, exit.
     // If the form is about to be attached to an entity, but the bundle isn't
@@ -212,7 +216,7 @@ class FormManglerService {
       '#attributes' => array('class' => array('rabbit-hole-action-setting')),
     );
 
-    $this->populateExtraBehaviorSections($form, NULL, NULL, $entity,
+    $this->populateExtraBehaviorSections($form, $form_state, $form_id, $entity,
       $is_bundle_or_entity_type, $bundle_settings);
 
     // Attach the Rabbit Hole form to the main form, and add a custom validation
