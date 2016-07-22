@@ -1,0 +1,5 @@
+name: TFS Blog
+type: module
+description: Customizations for the blog
+core: 8.x
+package: TFS
