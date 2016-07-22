@@ -40,10 +40,16 @@ third_party_settings:
         - body
         - node_link
         - addtoany_field
+        - node_stats
     fields:
       addtoany_field:
         plugin_id: addtoany_field
         weight: 4
+        label: hidden
+        formatter: default
+      node_stats:
+        plugin_id: node_stats
+        weight: 5
         label: hidden
         formatter: default
       node_link:
