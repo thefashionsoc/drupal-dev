@@ -9,9 +9,14 @@ use Drupal\Core\Entity\Entity;
 use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\Core\Config\ImmutableConfig;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
+use Drupal\Core\Extension\ModuleHandlerInterface;
+use Drupal\Core\Utility\Token;
+use Drupal\Core\Language\LanguageInterface;
+use Drupal\Core\Render\BubbleableMetadata;
 use Drupal\rabbit_hole\Plugin\RabbitHoleBehaviorPluginBase;
 use Drupal\rabbit_hole\Exception\InvalidRedirectResponseException;
 use Drupal\rabbit_hole\BehaviorSettingsManagerInterface;
+use Drupal\rabbit_hole\Plugin\RabbitHoleEntityPluginManager;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -59,12 +64,43 @@ class PageRedirect extends RabbitHoleBehaviorPluginBase implements ContainerFact
   protected $rhBehaviorSettingsManager;
 
   /**
+   * The entity plugin manager.
+   *
+   * @var Drupal\rabbit_hole\Entity\RabbitHoleEntityPluginManager;
+   */
+  protected $rhEntityPluginManager;
+
+  /**
+   * The module handler.
+   *
+   * @var Drupal\Core\Extension\ModuleHandlerInterface
+   */
+  protected $moduleHandler;
+
+  /**
+   * The token service.
+   *
+   * @var Drupal\Core\Utility\Token
+   */
+  protected $token;
+
+  /**
    * {@inheritdoc}
    */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition,
-    BehaviorSettingsManagerInterface $bsm) {
+  public function __construct(
+    array $configuration,
+    $plugin_id,
+    $plugin_definition,
+    BehaviorSettingsManagerInterface $bsm,
+    RabbitHoleEntityPluginManager $rhepm,
+    ModuleHandlerInterface $mhi,
+    Token $token) {
+
     parent::__construct($configuration, $plugin_id, $plugin_definition);
     $this->rhBehaviorSettingsManager = $bsm;
+    $this->rhEntityPluginManager = $rhepm;
+    $this->moduleHandler = $mhi;
+    $this->token = $token;
   }
 
   /**
@@ -75,7 +111,10 @@ class PageRedirect extends RabbitHoleBehaviorPluginBase implements ContainerFact
       $configuration,
       $plugin_id,
       $plugin_definition,
-      $container->get('rabbit_hole.behavior_settings_manager')
+      $container->get('rabbit_hole.behavior_settings_manager'),
+      $container->get('plugin.manager.rabbit_hole_entity_plugin'),
+      $container->get('module_handler'),
+      $container->get('token')
     );
   }
 
@@ -100,9 +139,24 @@ class PageRedirect extends RabbitHoleBehaviorPluginBase implements ContainerFact
       $response_code = $entity->get('rh_redirect_response')->value;
     }
 
-    /*
-     * TODO: Add token support.
-     */
+    // Replace any tokens if applicable.
+    $langcode = $entity->language()->getId();
+
+    if ($langcode == LanguageInterface::LANGCODE_NOT_APPLICABLE) {
+      $langcode = LanguageInterface::LANGCODE_NOT_SPECIFIED;
+    }
+
+    if ($this->moduleHandler->moduleExists('token')) {
+      $target = $this->token->replace($target,
+        array(
+          $entity->getEntityTypeId() => $entity,
+        ),
+        array(
+          'clear' => TRUE,
+          'langcode' => $langcode,
+        ), new BubbleableMetadata()
+      );
+    }
 
     if (substr($target, 0, 4) == '<?php') {
       // TODO: Evaluate PHP code.
@@ -198,7 +252,10 @@ class PageRedirect extends RabbitHoleBehaviorPluginBase implements ContainerFact
     // the permission to use PHP for evaluation.
     $description = array();
     $description[] = t('Enter the relative path or the full URL that the user should get redirected to. Query strings and fragments are supported, such as %example.', array('%example' => 'http://www.example.com/?query=value#fragment'));
-    $description[] = t('You may enter tokens in this field.');
+
+    if ($this->moduleHandler->moduleExists('token')) {
+      $description[] = t('You may enter tokens in this field.');
+    }
 
     $form['rabbit_hole']['redirect']['rh_redirect'] = array(
       '#type' => /*rabbit_hole_access_php($module) ? 'textarea' :*/ 'textfield',
@@ -207,8 +264,30 @@ class PageRedirect extends RabbitHoleBehaviorPluginBase implements ContainerFact
       '#description' => '<p>' . implode('</p><p>', $description) . '</p>',
       '#attributes' => array('class' => array('rabbit-hole-redirect-setting')),
       '#rows' => substr_count($redirect, "\r\n") + 2,
+      '#element_validate' => array(),
+      '#after_build' => array(),
     );
-    // Display a list of tokens if the Token module is enabled.
+
+    $entity_type_for_tokens = NULL;
+    if (isset($entity)) {
+      $entity_type_for_tokens = $entity_is_bundle
+        ? $entity->getEntityType()->getBundleOf()
+        : $entity->getEntityTypeId();
+    }
+    else {
+      $entity_type_for_tokens = $this->rhEntityPluginManager
+        ->loadSupportedGlobalForms()[$form_id];
+    }
+
+    if ($this->moduleHandler->moduleExists('token')) {
+      $form['rabbit_hole']['redirect']['rh_redirect']['#element_validate'][]
+        = 'token_element_validate';
+      $form['rabbit_hole']['redirect']['rh_redirect']['#after_build'][]
+        = 'token_element_validate';
+      $form['rabbit_hole']['redirect']['rh_redirect']['#token_types']
+        = array($entity_type_for_tokens);
+    }
+
     // Add the redirect response setting.
     $form['rabbit_hole']['redirect']['rh_redirect_response'] = array(
       '#type' => 'select',
@@ -226,6 +305,14 @@ class PageRedirect extends RabbitHoleBehaviorPluginBase implements ContainerFact
         array('@link' => Link::fromTextAndUrl(t('this link'), Url::fromUri('http://api.drupal.org/api/drupal/includes--common.inc/function/drupal_goto/7'))->toString())),
       '#attributes' => array('class' => array('rabbit-hole-redirect-response-setting')),
     );
+
+    // Display a list of tokens if the Token module is enabled.
+    if ($this->moduleHandler->moduleExists('token')) {
+      $form['rabbit_hole']['redirect']['token_help'] = array(
+        '#theme' => 'token_tree_link',
+        '#token_types' => array($entity_type_for_tokens),
+      );
+    }
 
     // If the redirect path contains PHP, and the user doesn't have permission
     // to use PHP for evaluation, we'll disable access to the path setting, and

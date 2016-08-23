@@ -6,8 +6,8 @@ dependencies:
   - rabbit_hole
   - user
 
-# Information added by Drupal.org packaging script on 2016-05-13
+# Information added by Drupal.org packaging script on 2016-07-18
 version: '8.x-1.x-dev'
 core: '8.x'
 project: 'rabbit_hole'
-datestamp: 1463148550
+datestamp: 1468802645

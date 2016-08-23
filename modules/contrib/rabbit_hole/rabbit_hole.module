@@ -62,7 +62,7 @@ function rabbit_hole_form_alter(&$form, FormStateInterface $form_state, $form_id
             ->hasPermission('rabbit hole administer ' . $current_type);
     if (in_array($current_type, $affected_types) && $administer_permitted) {
       \Drupal::service('rabbit_hole.form_mangler')->addRabbitHoleOptionsToEntityForm(
-        $form, $form_state->getFormObject()->getEntity());
+        $form, $form_state->getFormObject()->getEntity(), $form_state, $form_id);
 
       $form_state->setSubmitHandlers(
         array_merge($form_state->getSubmitHandlers(),
@@ -71,7 +71,7 @@ function rabbit_hole_form_alter(&$form, FormStateInterface $form_state, $form_id
     }
     elseif (in_array($current_type, $affected_bundle_types)) {
       \Drupal::service('rabbit_hole.form_mangler')->addRabbitHoleOptionsToEntityForm(
-        $form, $form_state->getFormObject()->getEntity());
+        $form, $form_state->getFormObject()->getEntity(), $form_state, $form_id);
       $form_state->setSubmitHandlers(
         array_merge($form_state->getSubmitHandlers(),
           array('_rabbit_hole_general_form_submit'))
@@ -80,7 +80,7 @@ function rabbit_hole_form_alter(&$form, FormStateInterface $form_state, $form_id
   }
   elseif (array_key_exists($form_id, $affected_global_forms)) {
     \Drupal::service('rabbit_hole.form_mangler')->addRabbitHoleOptionsToGlobalForm(
-       $form, $affected_global_forms[$form_id]
+       $form, $affected_global_forms[$form_id], $form_state, $form_id
     );
   }
 }
