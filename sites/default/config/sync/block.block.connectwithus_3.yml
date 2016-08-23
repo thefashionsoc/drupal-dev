@@ -11,7 +11,7 @@ dependencies:
 id: connectwithus_3
 theme: bootstrap_business
 region: header_top_right
-weight: -13
+weight: -12
 provider: null
 plugin: 'block_content:b04513b7-edbb-44fb-bab1-434bbcf89c32'
 settings:

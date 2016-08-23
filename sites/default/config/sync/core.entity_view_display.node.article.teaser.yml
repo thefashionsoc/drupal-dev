@@ -9,7 +9,6 @@ dependencies:
     - field.field.node.article.field_category
     - field.field.node.article.field_category_1
     - field.field.node.article.field_image
-    - image.style.medium
     - node.type.article
   module:
     - ds
@@ -39,11 +38,12 @@ third_party_settings:
         - node_title
         - body
         - node_link
+        - node_post_date
         - addtoany_field
     fields:
       addtoany_field:
         plugin_id: addtoany_field
-        weight: 4
+        weight: 5
         label: hidden
         formatter: default
       node_link:
@@ -51,6 +51,11 @@ third_party_settings:
         weight: 3
         label: hidden
         formatter: default
+      node_post_date:
+        plugin_id: node_post_date
+        weight: 4
+        label: hidden
+        formatter: ds_post_date_long
       node_title:
         plugin_id: node_title
         weight: 1
@@ -78,7 +83,7 @@ content:
     type: image
     weight: 0
     settings:
-      image_style: medium
+      image_style: ''
       image_link: content
     third_party_settings: {  }
     label: hidden

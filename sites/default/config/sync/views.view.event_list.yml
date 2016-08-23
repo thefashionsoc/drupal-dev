@@ -403,7 +403,7 @@ display:
             label: ''
           granularity: second
           plugin_id: datetime
-      title: 'Event List'
+      title: 'Upcoming Events'
       header: {  }
       footer: {  }
       empty: {  }

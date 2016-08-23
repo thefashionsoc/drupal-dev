@@ -4,8 +4,13 @@ status: true
 dependencies:
   config:
     - field.field.node.page.body
+    - field.field.node.page.field_category
+    - field.field.node.page.field_category_1
+    - field.field.node.page.field_image
+    - image.style.thumbnail
     - node.type.page
   module:
+    - image
     - path
     - text
 _core:
@@ -28,6 +33,29 @@ content:
     weight: 10
     settings: {  }
     third_party_settings: {  }
+  field_category:
+    weight: 33
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+  field_category_1:
+    weight: 34
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+  field_image:
+    weight: 32
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+    third_party_settings: {  }
+    type: image_image
   path:
     type: path
     weight: 30

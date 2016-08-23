@@ -1,22 +1,22 @@
-uuid: 2e40d870-7207-4f55-a231-e014963c2f54
+uuid: e6538c98-89f4-4d8a-bba6-812e4382bb52
 langcode: en
 status: true
 dependencies:
   content:
-    - 'block_content:basic:cf265e4b-ba2b-44eb-9a19-819f00befc15'
+    - 'block_content:basic:98c6f7e2-2066-4ebd-8981-6e9e02727e41'
   module:
     - block_content
   theme:
     - bootstrap_business
-id: support
+id: membership
 theme: bootstrap_business
-region: footer_third
+region: sidebar_second
 weight: -12
 provider: null
-plugin: 'block_content:cf265e4b-ba2b-44eb-9a19-819f00befc15'
+plugin: 'block_content:98c6f7e2-2066-4ebd-8981-6e9e02727e41'
 settings:
-  id: 'block_content:cf265e4b-ba2b-44eb-9a19-819f00befc15'
-  label: 'Customer Support'
+  id: 'block_content:98c6f7e2-2066-4ebd-8981-6e9e02727e41'
+  label: Membership
   provider: block_content
   label_display: visible
   status: true

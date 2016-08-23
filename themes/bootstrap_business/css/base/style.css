@@ -59,13 +59,15 @@ position: absolute; bottom: -15px; left: 0; }
 .path-node #content-wrapper h1.page-title { margin: 0; padding: 20px 40px 0; }
 
 /*tables*/
-table { width: 100%; margin-bottom: 20px; border: 1px solid #dfdfdf; }
+table { width: 100%; margin-bottom: 20px; }  /*border: 1px solid #dfdfdf;*/
 
 table tbody { border-top: none; }
 
-table tr.even, table tr.odd, th { background-color: transparent; border-bottom: 1px solid #dfdfdf;}
+table tr.even, table tr.odd, th { background-color: transparent; } /* border-bottom: 1px solid #dfdfdf; */
 
-thead tr th, thead tr td, tbody tr th, tbody tr td { padding: 8px; line-height: 142%; vertical-align: top; }
+thead tr th, thead tr td, tbody tr th, tbody tr td { line-height: 142%; vertical-align: top; }
+thead tr th, thead tr td, tbody tr th, tbody tr td { padding: 1px; }
+th { width: 50px;}
 
 /*Layout*/
 #pre-header { top: 0; left: 0; width: 100%; z-index: 13; position: absolute; background-color: #333; }
@@ -300,7 +302,8 @@ position: absolute; top: 20px; right: 17px; font-size: 11px; font-weight: 400; }
     margin-left: 25px;
 }
 
-/*forum page*/
+/* forum page */
+
 th.active img { margin: -4px 0 0 5px; }
 
 #forum table { border: 1px solid #eaeaea; }

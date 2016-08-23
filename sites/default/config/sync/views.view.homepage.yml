@@ -1,19 +1,18 @@
-uuid: 46e9abb2-bbf0-4f88-a7a5-989b4aac78a2
+uuid: 1de45c48-78fe-4598-9cb1-8e8532261733
 langcode: en
 status: true
 dependencies:
   config:
-    - core.entity_view_mode.node.rss
     - core.entity_view_mode.node.teaser
-    - node.type.event
+    - node.type.page
   module:
     - node
 _core:
   default_config_hash: rwRoOr3DiobxwoWSmtUcna1LQz5_HxHvS7H5dl7_-Uo
-id: frontpage
-label: Blog
+id: homepage
+label: Homepage
 module: node
-description: 'All content promoted to the blog.'
+description: 'All content promoted to the homepage.'
 tag: default
 base_table: node_field_data
 base_field: nid
@@ -80,9 +79,9 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          operator: 'not in'
+          operator: in
           value:
-            event: event
+            page: page
           group: 1
           exposed: false
           expose:
@@ -114,40 +113,40 @@ display:
           entity_field: type
           plugin_id: bundle
         promote:
+          id: promote
+          table: node_field_data
+          field: promote
+          relationship: none
+          group_type: group
           admin_label: ''
+          operator: '='
+          value: false
+          group: 1
+          exposed: false
           expose:
-            description: ''
-            identifier: ''
-            label: ''
-            multiple: false
-            operator: ''
             operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            identifier: ''
+            required: false
             remember: false
+            multiple: false
             remember_roles:
               authenticated: authenticated
-            required: false
-            use_operator: false
-          exposed: false
-          field: promote
-          group: 1
+          is_grouped: false
           group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
             default_group: All
             default_group_multiple: {  }
-            description: ''
             group_items: {  }
-            identifier: ''
-            label: ''
-            multiple: false
-            optional: true
-            remember: false
-            widget: select
-          group_type: group
-          id: promote
-          is_grouped: false
-          operator: '='
-          relationship: none
-          table: node_field_data
-          value: true
           plugin_id: boolean
           entity_type: node
           entity_field: promote
@@ -295,43 +294,9 @@ display:
         - 'user.node_grants:view'
       max-age: -1
       tags: {  }
-  feed_1:
-    display_plugin: feed
-    id: feed_1
-    display_title: Feed
-    position: 2
-    display_options:
-      sitename_title: true
-      path: rss.xml
-      displays:
-        page_1: page_1
-        default: ''
-      pager:
-        type: some
-        options:
-          items_per_page: 10
-          offset: 0
-      style:
-        type: rss
-        options:
-          description: ''
-          grouping: {  }
-          uses_fields: false
-      row:
-        type: node_rss
-        options:
-          relationship: none
-          view_mode: rss
-      display_extenders: {  }
-    cache_metadata:
-      contexts:
-        - 'languages:language_interface'
-        - 'user.node_grants:view'
-      max-age: -1
-      tags: {  }
   page_1:
     display_options:
-      path: blog
+      path: node/10
       display_extenders: {  }
     display_plugin: page
     display_title: Page

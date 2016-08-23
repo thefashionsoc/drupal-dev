@@ -17,3 +17,28 @@ ul#follow_us li{
 ul#follow_us li img{
     transform:translateY(10px);
 }
+
+/*.clearfix.text-formatted.field.field--name-body.field--type-text-with-summary.field--label-hidden.field__item p:nth-child(1){
+    font-weight: bold;
+}
+
+.clearfix.text-formatted.field.field--name-body.field--type-text-with-summary.field--label-hidden.field__item p:nth-child(2){
+    font-weight: normal;
+}
+
+.clearfix.text-formatted.field.field--name-body.field--type-text-with-summary.field--label-hidden.field__item.quickedit-field p:nth-child(1){
+    font-weight: bold;
+}
+
+.clearfix.text-formatted.field.field--name-body.field--type-text-with-summary.field--label-hidden.field__item.quickedit-field p:nth-child(n+1){
+    font-weight: normal;
+}
+
+.clearfix.text-formatted.field.field--name-body.field--type-text-with-summary.field--label-hidden.field__item.quickedit-field center{
+    font-weight: normal;
+}*/
+
+p#support {
+    font-weight: normal;
+}
+

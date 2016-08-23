@@ -1,0 +1,25 @@
+uuid: 3164398e-140b-46c6-90f6-9e76b6406333
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:aa610ba0-48e3-4492-88ea-6d7593d806f3'
+  module:
+    - block_content
+  theme:
+    - bootstrap_business
+id: newsletter
+theme: bootstrap_business
+region: sidebar_second
+weight: -11
+provider: null
+plugin: 'block_content:aa610ba0-48e3-4492-88ea-6d7593d806f3'
+settings:
+  id: 'block_content:aa610ba0-48e3-4492-88ea-6d7593d806f3'
+  label: Newsletter
+  provider: block_content
+  label_display: visible
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }
