@@ -9,7 +9,7 @@ _core:
 id: bootstrap_business_page_title
 theme: bootstrap_business
 region: '-1'
-weight: -10
+weight: -12
 provider: null
 plugin: page_title_block
 settings:

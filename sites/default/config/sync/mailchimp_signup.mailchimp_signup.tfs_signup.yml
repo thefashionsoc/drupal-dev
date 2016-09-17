@@ -17,7 +17,7 @@ doublein: false
 send_welcome: null
 include_interest_groups: false
 settings:
-  path: newsletter
+  path: newsletter/signup
   submit_button: Submit
   confirmation_message: 'You have been successfully subscribed.'
   destination: ''

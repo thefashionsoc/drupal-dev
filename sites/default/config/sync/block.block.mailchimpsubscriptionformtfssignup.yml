@@ -2,6 +2,8 @@ uuid: da859bdc-af0f-45fc-8dec-54071d526b47
 langcode: en
 status: true
 dependencies:
+  module:
+    - mailchimp_signup
   theme:
     - bootstrap_business
 id: mailchimpsubscriptionformtfssignup

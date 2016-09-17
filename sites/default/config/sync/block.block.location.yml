@@ -1,0 +1,25 @@
+uuid: 0d5c248a-80d9-49b5-8d74-1997dfb254ee
+langcode: en
+status: false
+dependencies:
+  content:
+    - 'block_content:basic:75ff69f4-f96b-464f-92ba-a8b013eb0415'
+  module:
+    - block_content
+  theme:
+    - bootstrap_business
+id: location
+theme: bootstrap_business
+region: '-1'
+weight: -9
+provider: null
+plugin: 'block_content:75ff69f4-f96b-464f-92ba-a8b013eb0415'
+settings:
+  id: 'block_content:75ff69f4-f96b-464f-92ba-a8b013eb0415'
+  label: Location
+  provider: block_content
+  label_display: visible
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }

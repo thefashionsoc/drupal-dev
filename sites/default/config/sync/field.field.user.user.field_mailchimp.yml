@@ -27,8 +27,8 @@ settings:
   interest_groups_label: 'Interest Groups'
   merge_fields:
     EMAIL: mail
-    TITLE: field_title
     FNAME: field_firstname
     LNAME: field_lastname
-  unsubscribe_on_delete: 1
+    TITLE: field_title
+  unsubscribe_on_delete: 0
 field_type: mailchimp_lists_subscription

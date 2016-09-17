@@ -333,9 +333,6 @@ display:
     display_options:
       path: blog
       display_extenders: {  }
-      menu:
-        enabled: true
-        expanded: false
     display_plugin: page
     display_title: Page
     id: page_1

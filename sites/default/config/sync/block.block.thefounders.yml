@@ -1,0 +1,25 @@
+uuid: 735bb564-be35-4e0a-a70e-4862d98aad22
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:07ea3f70-f75b-4fd0-96fc-55baec4b5130'
+  module:
+    - block_content
+  theme:
+    - bootstrap_business
+id: thefounders
+theme: bootstrap_business
+region: footer_first
+weight: -14
+provider: null
+plugin: 'block_content:07ea3f70-f75b-4fd0-96fc-55baec4b5130'
+settings:
+  id: 'block_content:07ea3f70-f75b-4fd0-96fc-55baec4b5130'
+  label: 'The Founders'
+  provider: block_content
+  label_display: visible
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }
