@@ -11,6 +11,7 @@ dependencies:
     - field.field.node.article.field_image
     - node.type.article
   module:
+    - comment
     - ds
     - image
     - text
@@ -38,6 +39,7 @@ third_party_settings:
         - node_title
         - body
         - addtoany_field
+        - comment
     fields:
       addtoany_field:
         plugin_id: addtoany_field
@@ -62,6 +64,13 @@ content:
     settings: {  }
     third_party_settings: {  }
     label: hidden
+  comment:
+    type: comment_default
+    weight: 4
+    label: above
+    settings:
+      pager_id: 0
+    third_party_settings: {  }
   field_image:
     type: image
     weight: 0
@@ -71,7 +80,6 @@ content:
     third_party_settings: {  }
     label: hidden
 hidden:
-  comment: true
   field_category: true
   field_category_1: true
   links: true
